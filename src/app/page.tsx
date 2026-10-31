@@ -19,7 +19,9 @@ interface HomePageProps {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const params = await searchParams;
-  const q = params.q?.toLowerCase().trim();
+  const rawQ = params.q?.trim() || "";
+  const q = rawQ.toLowerCase();
+  const cleanQ = q.replace(/[^a-z0-9]/g, "");
   const category = params.category;
   const genre = params.genre;
   const tag = params.tag;
@@ -27,15 +29,66 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   const allItems = await getAllMedia();
 
-  // Search & Filter evaluation
-  const filteredItems = allItems.filter((item) => {
-    if (q) {
-      const matchTitle = item.title.toLowerCase().includes(q);
-      const matchStory = item.storyline.toLowerCase().includes(q);
-      const matchGenre = item.genres.some((g) => g.toLowerCase().includes(q));
-      if (!matchTitle && !matchStory && !matchGenre) return false;
+  // Universal smart search matcher with typo tolerance and token support
+  const matchesSearch = (item: typeof allItems[0]): boolean => {
+    if (!q) return true;
+    const rawQ = q;
+    const dedupQ = cleanQ.replace(/([a-z])\1+/g, "$1");
+    const qTokens = rawQ.replace(/[^a-z0-9]/g, " ").split(/\s+/).filter(Boolean);
+
+    const rawTitle = (item.title || "").toLowerCase();
+    const cleanTitle = rawTitle.replace(/[^a-z0-9]/g, "");
+    const dedupTitle = cleanTitle.replace(/([a-z])\1+/g, "$1");
+    const titleTokens = rawTitle.replace(/[^a-z0-9]/g, " ").split(/\s+/).filter(Boolean);
+
+    // 1. Direct or clean contains
+    if (rawTitle.includes(rawQ)) return true;
+    if (cleanQ.length >= 3 && cleanTitle.includes(cleanQ)) return true;
+    if (dedupQ.length >= 3 && dedupTitle.includes(dedupQ)) return true;
+
+    // 2. Token-based fuzzy matching (e.g., "ant mann" -> matches "ant" & "man")
+    if (qTokens.length > 0) {
+      const allTokensInTitle = qTokens.every((qTok) => {
+        const dedupQTok = qTok.replace(/([a-z])\1+/g, "$1");
+        return titleTokens.some((tTok) => {
+          if (tTok === qTok || tTok.startsWith(qTok)) return true;
+          const dedupTTok = tTok.replace(/([a-z])\1+/g, "$1");
+          if (dedupTTok === dedupQTok || dedupTTok.startsWith(dedupQTok)) return true;
+          // Typo tolerance (1 char diff) for 3+ letter words
+          if (Math.abs(qTok.length - tTok.length) <= 1 && qTok.length >= 3) {
+            let diff = 0, i = 0, j = 0;
+            while (i < qTok.length && j < tTok.length) {
+              if (qTok[i] !== tTok[j]) {
+                diff++;
+                if (diff > 1) break;
+                if (qTok.length > tTok.length) i++;
+                else if (tTok.length > qTok.length) j++;
+                else { i++; j++; }
+              } else { i++; j++; }
+            }
+            if (diff <= 1) return true;
+          }
+          return false;
+        });
+      });
+      if (allTokensInTitle) return true;
     }
 
+    // 3. Match against tags (e.g. tag "Ant-Man", "Iron Man", "Deadpool", "X-Men")
+    for (const tagItem of item.tags || []) {
+      const rawTag = tagItem.toLowerCase();
+      const cleanTag = rawTag.replace(/[^a-z0-9]/g, "");
+      const dedupTag = cleanTag.replace(/([a-z])\1+/g, "$1");
+      if (rawTag.includes(rawQ) || (cleanQ.length >= 3 && cleanTag.includes(cleanQ)) || (dedupQ.length >= 3 && dedupTag.includes(dedupQ))) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  // Search & Filter evaluation
+  let filteredItems = allItems.filter((item) => {
     if (genre && !item.genres.some((g) => g.toLowerCase() === genre.toLowerCase())) {
       return false;
     }
@@ -53,8 +106,64 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       return false;
     }
 
+    if (q) {
+      return matchesSearch(item);
+    }
+
     return true;
   });
+
+  // If no direct title/tag match was found for query, fallback to storyline/genre search
+  if (q && filteredItems.length === 0) {
+    filteredItems = allItems.filter((item) => {
+      const rawStory = (item.storyline || "").toLowerCase();
+      const inGenre = item.genres.some((g) => g.toLowerCase().includes(q));
+      return rawStory.includes(q) || inGenre;
+    });
+  }
+
+  // Sorting search results
+  const isFranchiseOrSerial =
+    cleanQ.includes("antman") ||
+    cleanQ.includes("ironman") ||
+    cleanQ.includes("deadpool") ||
+    cleanQ.includes("xmen") ||
+    cleanQ.includes("wolverine") ||
+    cleanQ.includes("spiderman") ||
+    cleanQ.includes("thor") ||
+    cleanQ.includes("captainamerica") ||
+    cleanQ.includes("captain") ||
+    cleanQ.includes("avenger");
+
+  if (isFranchiseOrSerial) {
+    // Display all linked franchise movies in serial chronological order (Part 1, 2, 3...)
+    filteredItems.sort((a, b) => {
+      // Prioritize direct title matches over indirect tag matches
+      const aTitle = a.title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const bTitle = b.title.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const aHas = aTitle.includes(cleanQ.replace(/([a-z])\1+/g, "$1"));
+      const bHas = bTitle.includes(cleanQ.replace(/([a-z])\1+/g, "$1"));
+      if (aHas && !bHas) return -1;
+      if (!aHas && bHas) return 1;
+
+      if (a.releaseYear !== b.releaseYear) {
+        return a.releaseYear - b.releaseYear;
+      }
+      return a.title.localeCompare(b.title);
+    });
+  } else if (q) {
+    // For general searches, prioritize exact title matches, then release year descending
+    filteredItems.sort((a, b) => {
+      const aTitleMatch = a.title.toLowerCase().includes(q);
+      const bTitleMatch = b.title.toLowerCase().includes(q);
+      if (aTitleMatch && !bTitleMatch) return -1;
+      if (!aTitleMatch && bTitleMatch) return 1;
+      if (b.releaseYear !== a.releaseYear) {
+        return b.releaseYear - a.releaseYear;
+      }
+      return b.imdbRating - a.imdbRating;
+    });
+  }
 
   const isHomeView = !q && !category && !genre && !tag && !type;
 

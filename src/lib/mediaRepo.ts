@@ -128,7 +128,7 @@ export async function getMediaBySlug(slug: string): Promise<MediaItem | undefine
     const cleanSlug = slug.replace(/-\d{4}$/, "");
     const rows = (await sql`
       SELECT * FROM media_items
-      WHERE slug = ${slug} OR slug = ${cleanSlug}
+      WHERE slug = ${slug} OR slug = ${cleanSlug} OR id = ${slug}
       LIMIT 1
     `) as MediaRow[];
 
