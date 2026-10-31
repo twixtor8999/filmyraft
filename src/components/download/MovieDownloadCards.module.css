@@ -1,0 +1,98 @@
+.container {
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.downloadBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 0.5rem;
+}
+
+.downloadHeading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.titleText {
+  color: #ffffff;
+}
+
+.langHighlight {
+  color: #f59e0b; /* Yellow highlight matching Vegamovies */
+}
+
+.resHighlight {
+  color: #38bdf8; /* Cyan highlight matching Vegamovies */
+}
+
+.sizeHighlight {
+  color: #cbd5e1;
+}
+
+.btnRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Signature Vegamovies Emerald Green Download Button */
+.vegamoviesGreenBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  border: 1px solid #34d399;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.vegamoviesGreenBtn:hover {
+  background: linear-gradient(180deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+.arrowIcon {
+  color: #fef08a; /* Yellow glowing arrows */
+  font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .downloadHeading {
+    font-size: 0.95rem;
+  }
+  .vegamoviesGreenBtn {
+    font-size: 0.95rem;
+    padding: 0.65rem 1.85rem;
+    width: 100%;
+    max-width: 320px;
+  }
+}

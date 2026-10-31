@@ -1,0 +1,147 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 960px;
+  margin: 0.75rem auto 1rem auto;
+  padding: 0 1rem;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.bigPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.75rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+}
+
+.pillGreen {
+  background: #15803d;
+  color: #ffffff;
+  border: 1px solid #22c55e;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.pillGreen:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.pillBlue {
+  background: #0284c7;
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+}
+
+.pillBlue:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
+}
+
+.badgesRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
+}
+
+.badgePink {
+  background: #e11d48;
+  color: #fff;
+}
+
+.badgePurple {
+  background: #9333ea;
+  color: #fff;
+}
+
+.badgeOrange {
+  background: #ea580c;
+  color: #fff;
+}
+
+.badgeFuchsia {
+  background: #c026d3;
+  color: #fff;
+}
+
+.badgeCyan {
+  background: #0284c7;
+  color: #fff;
+}
+
+.badgeRed {
+  background: #dc2626;
+  color: #fff;
+}
+
+.badgeRose {
+  background: #be123c;
+  color: #fff;
+}
+
+.badgeBlue {
+  background: #2563eb;
+  color: #fff;
+}
+
+.badgeMarvel {
+  background: #b91c1c;
+  color: #fff;
+  border: 1px solid #f87171;
+}
+
+.badgeAmber {
+  background: #d97706;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .bigPill {
+    font-size: 0.78rem;
+    padding: 0.4rem 1.25rem;
+  }
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.45rem;
+  }
+}

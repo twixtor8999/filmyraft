@@ -1,0 +1,136 @@
+.main {
+  min-height: 80vh;
+  padding: 2rem 0 4rem 0;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.fileCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  margin-top: 1rem;
+}
+
+.thumbWrapper {
+  width: 90px;
+  height: 125px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.categoryPill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fileName {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.metaCol {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.metaLabel {
+  color: var(--text-muted);
+}
+
+.metaValHighlight {
+  color: var(--accent-amber);
+  font-weight: 800;
+}
+
+.metaVal {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.helpBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.helpTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.helpList {
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.backLinkWrapper {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.backLink {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  transition: opacity 0.2s;
+}
+
+.backLink:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .fileCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .thumbWrapper {
+    width: 70px;
+    height: 100px;
+  }
+  .fileName {
+    font-size: 1.1rem;
+  }
+}

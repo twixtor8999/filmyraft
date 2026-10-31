@@ -1,0 +1,253 @@
+.container {
+  width: 100%;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.seasonSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.downloadBannerHindi {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #facc15; /* Yellow header text matching screenshot */
+  letter-spacing: 0.02em;
+  padding: 0.5rem 0;
+}
+
+.tabList {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.activeTab {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.epCount {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.downloadGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.downloadBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 0.5rem;
+}
+
+.dividerSubtle {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 1rem;
+}
+
+.downloadHeading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.titleText {
+  color: #ffffff;
+}
+
+.langHighlight {
+  color: #f59e0b; /* Yellow highlight matching Vegamovies */
+}
+
+.resHighlight {
+  color: #38bdf8; /* Cyan highlight matching Vegamovies */
+}
+
+.sizeHighlight {
+  color: #cbd5e1;
+}
+
+.btnRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Signature Vegamovies Emerald Green Download Button */
+.vegamoviesGreenBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  border: 1px solid #34d399;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 2.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.vegamoviesGreenBtn:hover {
+  background: linear-gradient(180deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Signature Vegamovies Orange/Red Gradient V-Cloud Button matching user screenshot */
+.vcloudOrangeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(90deg, #ea580c 0%, #dc2626 50%, #ea580c 100%);
+  border: 1px solid #f97316;
+  color: #ffffff;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 2.25rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.vcloudOrangeBtn:hover {
+  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 50%, #dc2626 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.55);
+}
+
+.arrowIcon {
+  color: #fef08a; /* Yellow glowing arrows */
+  font-size: 1.05rem;
+}
+
+.boltIcon {
+  color: #fef08a;
+  font-size: 1.1rem;
+}
+
+/* Single Episodes Centered List Matching Screenshot */
+.episodesGroup {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.episodesListCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.episodeBlockCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.episodeTitleDashes {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #cbd5e1;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.btnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: #1f242d;
+  border: 1px solid #333a48;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 0.7rem 2.25rem;
+  border-radius: 50px;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .downloadHeading {
+    font-size: 0.95rem;
+  }
+  .vegamoviesGreenBtn,
+  .vcloudOrangeBtn {
+    font-size: 0.92rem;
+    padding: 0.65rem 1.65rem;
+    width: 100%;
+    max-width: 320px;
+  }
+  .episodeTitleDashes {
+    font-size: 0.95rem;
+  }
+}

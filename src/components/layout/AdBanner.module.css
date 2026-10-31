@@ -1,0 +1,74 @@
+.adWrapper {
+  margin: 1.5rem auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adTag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.adBox {
+  width: 100%;
+  background: rgba(21, 24, 36, 0.6);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.adBox:hover {
+  border-color: rgba(229, 9, 20, 0.4);
+}
+
+.leaderboard {
+  max-width: 728px;
+}
+
+.leaderboard .adBox {
+  height: 90px;
+}
+
+.rectangle {
+  max-width: 300px;
+}
+
+.rectangle .adBox {
+  height: 250px;
+}
+
+.responsive {
+  max-width: 100%;
+}
+
+.responsive .adBox {
+  height: 90px;
+}
+
+.adContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.adIcon {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .leaderboard .adBox {
+    height: 60px;
+  }
+}
